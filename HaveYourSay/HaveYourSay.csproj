@@ -17,11 +17,14 @@
     <PackageReference Include="Telerik.UI.for.Xamarin.SkiaSharp" Version="2019.1.116.1" />
     <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.3.0" />
+    <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
     <Folder Include="Model\" />
     <Folder Include="ViewModel\" />
+    <Folder Include="Service\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Views\MainPage.xaml.cs" />

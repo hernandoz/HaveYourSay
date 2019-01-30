@@ -1,13 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:telerikDataControls="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls" 
+             xmlns:telerikListView="clr-namespace:Telerik.XamarinForms.DataControls.ListView;assembly=Telerik.XamarinForms.DataControls" 
              x:Class="HaveYourSay.Views.FormEntry">
     <ContentPage.Content>
         <StackLayout>
-        <Label Text="Your Selected Location" HorizontalOptions="Center"/>
-            <Label Text="LONDON Project" FontAttributes="Bold" HorizontalOptions="Center"/>
-               
-            
+            <Entry x:Name="codedata" Text="{Binding Project}" IsVisible="false" />
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Project :" FontAttributes="Bold" HorizontalOptions="Start" />
+                <Label Text="{Binding Project}" FontAttributes="Bold" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Location :" FontAttributes="Bold" HorizontalOptions="Center" />
+                <Label Text="{Binding Location}" FontAttributes="Bold" />
+            </StackLayout>
+            <ScrollView>
+                <StackLayout>
+                    <Picker x:Name="picker" Title="Select a Category" SelectedItem="{Binding Item.Category}" SelectedIndexChanged="Handle_SelectedIndexChanged" />
+                    <Label Text=" Description :" />
+                    <Editor x:Name="DescriptionEntry" Text="{Binding Item.Description}" Placeholder="Enter Your Description" HeightRequest="150" />
+                    <Label Text="Insert Images" />
+                    <Button Text="Add New Photo" Clicked="AddPhoto_ClickedAsync" />
+                    <Image x:Name="addedImage" HeightRequest="100" IsVisible="false"/>
+                    <telerikDataControls:RadListView x:Name="listView" ItemsSource="{Binding Media}">
+                        <telerikDataControls:RadListView.ItemTemplate>
+                            <DataTemplate>
+                                <telerikListView:ListViewTemplateCell>
+                                    <telerikListView:ListViewTemplateCell.View>
+                                    <Image Source="{Binding ImagePath}" HeightRequest="150"/>
+                                        </telerikListView:ListViewTemplateCell.View>
+                                    </telerikListView:ListViewTemplateCell>
+                            </DataTemplate>
+                        </telerikDataControls:RadListView.ItemTemplate>
+                        <telerikDataControls:RadListView.LayoutDefinition>
+                            <telerikListView:ListViewGridLayout HorizontalItemSpacing="5" 
+                                                                ItemLength="120" 
+                                                                SpanCount="6" 
+                                                                VerticalItemSpacing="5" />
+                        </telerikDataControls:RadListView.LayoutDefinition>
+                    </telerikDataControls:RadListView>
+                    <Label Text="Name (Optional)" />
+                    <Entry Text="{Binding Item.Name}" Placeholder="Enter Name" />
+                    <Label Text="Company (Optional)" />
+                    <Entry Text="{Binding Item.Company}" Placeholder="Enter Company Name" />
+                    <Label Text="Telephone Number (Optional)" />
+                    <Entry Text="{Binding Item.Telephone}" Placeholder="Enter Telephone Number" />
+                    <Label Text="Email (Optional)" />
+                    <Entry Text="{Binding Item.Email}" Placeholder="Enter Email" />
+                    <Button Text="Submit" Clicked="Submit_Clicked" BackgroundColor="Gray" BorderColor="Red" BorderRadius="10" WidthRequest="200" HorizontalOptions="Center" />
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

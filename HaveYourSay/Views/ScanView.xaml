@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HaveYourSay.Views.ScanView">
     <ContentPage.Content>
-            <StackLayout>
-        <!-- Place new controls here -->
+                 <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="16"/>
+                <RowDefinition Height="8"/>
+                    
+                </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
+            <Label Grid.Row="0"/>
+
+            <Label BackgroundColor="#7ebc56" Grid.Row="2" HeightRequest="16"/>
+            <Label BackgroundColor="#e4002b" Grid.Row="3" HeightRequest="8" />
+            
+            <!--//END Template--> 
+            
+            <StackLayout Grid.Row="1">
         <Label Text="Have Your Say" HorizontalOptions="Center" VerticalOptions="Center" />
         <Button x:Name="Scan" Text="Scan QrCode" Clicked="Handle_ClickedAsync" VerticalOptions="Center" HorizontalOptions="Center"/>
-    </StackLayout>
+                <Button Text=" Next " Clicked="Handle_Clicked"/>
+            </StackLayout>
+            </Grid>
     </ContentPage.Content>
 </ContentPage>

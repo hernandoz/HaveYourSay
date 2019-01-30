@@ -1,4 +1,5 @@
 ﻿using System;
+using HaveYourSay.Service;
 using HaveYourSay.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -8,9 +9,13 @@ namespace HaveYourSay
 {
     public partial class App : Application
     {
+        public static RestManager restManager { get;  private set;}
+
         public App()
         {
             InitializeComponent();
+
+            restManager = new RestManager(new RestService());
 
             MainPage = new NavigationPage(new ScanView());
         }

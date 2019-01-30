@@ -18469,6 +18469,9 @@ namespace HaveYourSay.Droid
 			// aapt resource value: 0x7f080003
 			public const int chart_palettes_light_selected = 2131230723;
 			
+			// aapt resource value: 0x7f080004
+			public const int file_paths = 2131230724;
+			
 			static Xml()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
