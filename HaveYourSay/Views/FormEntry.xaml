@@ -21,8 +21,8 @@
                     <Editor x:Name="DescriptionEntry" Text="{Binding Item.Description}" Placeholder="Enter Your Description" HeightRequest="150" />
                     <Label Text="Insert Images" />
                     <Button Text="Add New Photo" Clicked="AddPhoto_ClickedAsync" />
-                    <Image x:Name="addedImage" HeightRequest="100" IsVisible="false"/>
-                    <telerikDataControls:RadListView x:Name="listView" ItemsSource="{Binding Media}">
+                    <Image x:Name="addedImage" Source="{Binding ImagePath}" HeightRequest="100"/>
+<!--                    <telerikDataControls:RadListView x:Name="listView" ItemsSource="{Binding Media}">
                         <telerikDataControls:RadListView.ItemTemplate>
                             <DataTemplate>
                                 <telerikListView:ListViewTemplateCell>
@@ -38,7 +38,7 @@
                                                                 SpanCount="6" 
                                                                 VerticalItemSpacing="5" />
                         </telerikDataControls:RadListView.LayoutDefinition>
-                    </telerikDataControls:RadListView>
+                    </telerikDataControls:RadListView>-->
                     <Label Text="Name (Optional)" />
                     <Entry Text="{Binding Item.Name}" Placeholder="Enter Name" />
                     <Label Text="Company (Optional)" />
@@ -48,6 +48,7 @@
                     <Label Text="Email (Optional)" />
                     <Entry Text="{Binding Item.Email}" Placeholder="Enter Email" />
                     <Button Text="Submit" Clicked="Submit_Clicked" BackgroundColor="Gray" BorderColor="Red" BorderRadius="10" WidthRequest="200" HorizontalOptions="Center" />
+                    <Button Text="Upload Photo" Clicked="UploadPhoto_Clicked" BackgroundColor="Gray" BorderColor="Red" BorderRadius="10" WidthRequest="200" HorizontalOptions="Center" />
                 </StackLayout>
             </ScrollView>
         </StackLayout>

@@ -48,6 +48,7 @@ namespace HaveYourSay.Views
             {
                 Directory = "SRM_App",
                 Name = $"{DateTime.UtcNow}.jpg",
+                PhotoSize = PhotoSize.Medium
             };
                 
             using (var file = await CrossMedia.Current.TakePhotoAsync(mediaOptions))
@@ -64,9 +65,14 @@ namespace HaveYourSay.Views
             }
         }
 
-        async void Submit_Clicked(object sender, System.EventArgs e)
+        void Submit_Clicked(object sender, System.EventArgs e)
         {
             viewModel.SaveEntryAsync();
+        }
+
+        void UploadPhoto_Clicked(object sender, System.EventArgs e)
+        {
+            viewModel.UploadPhoto();
         }
     }
 }

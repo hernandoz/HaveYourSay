@@ -96,5 +96,30 @@ namespace HaveYourSay.ViewModel
 
         }
 
+        public async void UploadPhoto()
+        {
+            //string title = DateTime.Now.ToString();
+            foreach (var photo in Media)
+            {
+                try
+                {
+                    Guid g;
+                    g = Guid.NewGuid();
+
+                    var x = await BlobStorageService.SaveBlockBlob("mediastorage", photo.ContentAsBytes, g.ToString());
+                    Console.WriteLine($"Uploaded Photo ::: " + g.ToString() +";;;;;" + x.Uri);
+
+                    item.ImageUrl = x.Uri.ToString();
+
+                    SaveEntryAsync();
+
+                } 
+                catch (Exception e)
+                {
+                    Console.WriteLine($":::::::" + e);
+                }
+            }
+        }
+
     }
 }
