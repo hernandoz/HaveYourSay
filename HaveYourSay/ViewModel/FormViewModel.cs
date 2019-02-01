@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using HaveYourSay.Model;
+using HaveYourSay.Service;
 using MvvmHelpers;
 using Xamarin.Forms;
 
@@ -47,6 +48,7 @@ namespace HaveYourSay.ViewModel
 
                     Item.Project = Project;
                     Item.Location = location;
+                    Item.Created = DateTime.Now;
                 }
             }
         }
@@ -90,28 +92,20 @@ namespace HaveYourSay.ViewModel
 
         public async void SaveEntryAsync()
         {
-            await App.restManager.SaveEntryAsync(Item);
+            var entryid = await App.restManager.SaveEntryAsync(Item);
+            UploadPhoto(entryid);
             await Application.Current.MainPage.DisplayAlert("Alert", "Thanks for sending Imformaiton", null , "ok");
             await Application.Current.MainPage.Navigation.PopAsync();
 
         }
 
-        public async void UploadPhoto()
+        public async void UploadPhoto( string itemID)
         {
-            //string title = DateTime.Now.ToString();
             foreach (var photo in Media)
             {
                 try
                 {
-                    Guid g;
-                    g = Guid.NewGuid();
-
-                    var x = await BlobStorageService.SaveBlockBlob("mediastorage", photo.ContentAsBytes, g.ToString());
-                    Console.WriteLine($"Uploaded Photo ::: " + g.ToString() +";;;;;" + x.Uri);
-
-                    item.ImageUrl = x.Uri.ToString();
-
-                    //SaveEntryAsync();
+                    await BlobStorageService.SaveBlockBlob("mediastorage", photo.ContentAsBytes, itemID);
 
                 } 
                 catch (Exception e)

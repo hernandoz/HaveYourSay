@@ -7,6 +7,6 @@ namespace HaveYourSay.Service
 {
     public interface IRestService
     {
-            Task SaveEntryAsync(Entry item);
+            Task<string> SaveEntryAsync(Entry item);
     }
 }

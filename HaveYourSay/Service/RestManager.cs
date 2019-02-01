@@ -13,7 +13,7 @@ namespace HaveYourSay.Service
             restService = service;
         }
 
-        public Task SaveEntryAsync(Entry item)
+        public Task<string> SaveEntryAsync(Entry item)
         {
             return restService.SaveEntryAsync(item);
         }

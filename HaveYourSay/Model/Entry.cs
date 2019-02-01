@@ -13,8 +13,7 @@ namespace HaveYourSay.Model
         public string Company { get; set; }
         public string Telephone { get; set; }
         public string Email { get; set; }
-        public string ImageUrl { get; set; }
-        //public Media[] Media { get; set; }
+        public DateTime Created { get; set; }
 
     }
 }

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HaveYourSay.Views.ScanView">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="HaveYourSay.Views.ScanView">
     <ContentPage.Content>
-                 <Grid RowSpacing="0">
+                 <Grid RowSpacing="0" BackgroundColor="LightGray">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="16"/>
+                <RowDefinition Height="32"/>
                 <RowDefinition Height="8"/>
                     
                 </Grid.RowDefinitions>
@@ -13,14 +15,15 @@
                 </Grid.ColumnDefinitions>
             <Label Grid.Row="0"/>
 
-            <Label BackgroundColor="#7ebc56" Grid.Row="2" HeightRequest="16"/>
-            <Label BackgroundColor="#e4002b" Grid.Row="3" HeightRequest="8" />
+            <Label BackgroundColor="#7ebc56" Grid.Row="2"/>
+            <Label BackgroundColor="#e4002b" Grid.Row="3"/>
             
             <!--//END Template--> 
             
-            <StackLayout Grid.Row="1">
-        <Label Text="Have Your Say" HorizontalOptions="Center" VerticalOptions="Center" />
-        <Button x:Name="Scan" Text="Scan QrCode" Clicked="Handle_ClickedAsync" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <StackLayout Grid.Row="1" BackgroundColor="Gray">
+        <Label Text="Have Your Say" TextColor="White" FontAttributes="Bold" FontSize="50" HorizontalOptions="Center" VerticalOptions="Center" />
+        <Button x:Name="Scan" BackgroundColor="Green" Text="Scan QrCode" TextColor="White" Clicked="Handle_ClickedAsync" 
+                VerticalOptions="Center" HorizontalOptions="Center" BorderRadius="10" WidthRequest="200"/>
                 <Button Text=" Next " Clicked="Handle_Clicked"/>
             </StackLayout>
             </Grid>

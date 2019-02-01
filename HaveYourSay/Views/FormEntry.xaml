@@ -4,7 +4,23 @@
              xmlns:telerikListView="clr-namespace:Telerik.XamarinForms.DataControls.ListView;assembly=Telerik.XamarinForms.DataControls" 
              x:Class="HaveYourSay.Views.FormEntry">
     <ContentPage.Content>
-        <StackLayout>
+        <Grid RowSpacing="0" BackgroundColor="LightGray">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>       
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="8"/>
+            </Grid.RowDefinitions>
+            
+            <Label BackgroundColor="#7ebc56" Grid.Row="2" Grid.ColumnSpan="3"/>
+            <Label BackgroundColor="#e4002b" Grid.Row="3" Grid.ColumnSpan="3"/>
+            
+        <StackLayout Grid.Row="0" Grid.Column="1">
             <Entry x:Name="codedata" Text="{Binding Project}" IsVisible="false" />
             <StackLayout Orientation="Horizontal">
                 <Label Text="Project :" FontAttributes="Bold" HorizontalOptions="Start" />
@@ -14,15 +30,17 @@
                 <Label Text="Location :" FontAttributes="Bold" HorizontalOptions="Center" />
                 <Label Text="{Binding Location}" FontAttributes="Bold" />
             </StackLayout>
-            <ScrollView>
+                </StackLayout>
+            <ScrollView Grid.Row="1" Grid.Column="1" >
                 <StackLayout>
                     <Picker x:Name="picker" Title="Select a Category" SelectedItem="{Binding Item.Category}" SelectedIndexChanged="Handle_SelectedIndexChanged" />
-                    <Label Text=" Description :" />
+                    <Label Text=" Description :" FontAttributes="Bold" />
                     <Editor x:Name="DescriptionEntry" Text="{Binding Item.Description}" Placeholder="Enter Your Description" HeightRequest="150" />
-                    <Label Text="Insert Images" />
-                    <Button Text="Add New Photo" Clicked="AddPhoto_ClickedAsync" />
+                    <Label Text="Insert Images" FontAttributes="Bold"/>
+                    <Button Text="Capture Photo" Clicked="AddPhoto_ClickedAsync"  BackgroundColor="Red" BorderRadius="10" WidthRequest="200" HorizontalOptions="Start"/>
+                    <Button Text="Insert Photo" Clicked="AddPhoto_ClickedAsync"  BackgroundColor="Red" BorderRadius="10" WidthRequest="200" HorizontalOptions="Start"/>
                     <Image x:Name="addedImage" Source="{Binding ImagePath}" HeightRequest="100"/>
-<!--                    <telerikDataControls:RadListView x:Name="listView" ItemsSource="{Binding Media}">
+                    <telerikDataControls:RadListView x:Name="listView" ItemsSource="{Binding Media}">
                         <telerikDataControls:RadListView.ItemTemplate>
                             <DataTemplate>
                                 <telerikListView:ListViewTemplateCell>
@@ -38,19 +56,18 @@
                                                                 SpanCount="6" 
                                                                 VerticalItemSpacing="5" />
                         </telerikDataControls:RadListView.LayoutDefinition>
-                    </telerikDataControls:RadListView>-->
-                    <Label Text="Name (Optional)" />
+                    </telerikDataControls:RadListView>
+                    <Label Text="Name (Optional)" FontAttributes="Bold" />
                     <Entry Text="{Binding Item.Name}" Placeholder="Enter Name" />
-                    <Label Text="Company (Optional)" />
+                    <Label Text="Company (Optional)" FontAttributes="Bold"/>
                     <Entry Text="{Binding Item.Company}" Placeholder="Enter Company Name" />
-                    <Label Text="Telephone Number (Optional)" />
+                    <Label Text="Telephone Number (Optional)" FontAttributes="Bold"/>
                     <Entry Text="{Binding Item.Telephone}" Placeholder="Enter Telephone Number" />
-                    <Label Text="Email (Optional)" />
+                    <Label Text="Email (Optional)" FontAttributes="Bold"/>
                     <Entry Text="{Binding Item.Email}" Placeholder="Enter Email" />
-                    <Button Text="Submit" Clicked="Submit_Clicked" BackgroundColor="Gray" BorderColor="Red" BorderRadius="10" WidthRequest="200" HorizontalOptions="Center" />
-                    <Button Text="Upload Photo" Clicked="UploadPhoto_Clicked" BackgroundColor="Gray" BorderColor="Red" BorderRadius="10" WidthRequest="200" HorizontalOptions="Center" />
+                    <Button Text="Submit" Clicked="Submit_Clicked" BackgroundColor="Red" BorderRadius="10" WidthRequest="200" HorizontalOptions="Center" />
                 </StackLayout>
             </ScrollView>
-        </StackLayout>
+            </Grid>
     </ContentPage.Content>
 </ContentPage>

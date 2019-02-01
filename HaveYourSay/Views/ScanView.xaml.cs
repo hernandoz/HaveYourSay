@@ -9,6 +9,7 @@ namespace HaveYourSay.Views
     public partial class ScanView : ContentPage
     {
         FormViewModel viewModel = new FormViewModel();
+
         public ScanView()
         {
             InitializeComponent();

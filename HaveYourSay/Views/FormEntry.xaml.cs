@@ -12,6 +12,11 @@ namespace HaveYourSay.Views
     {
         public FormViewModel viewModel => BindingContext as FormViewModel;
 
+        public FormEntry()
+        {
+            InitializeComponent();
+        }
+
         public FormEntry(string data)
         {
             InitializeComponent();
@@ -72,7 +77,7 @@ namespace HaveYourSay.Views
 
         void UploadPhoto_Clicked(object sender, System.EventArgs e)
         {
-            viewModel.UploadPhoto();
+            //viewModel.UploadPhoto();
         }
     }
 }

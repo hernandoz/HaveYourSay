@@ -21,7 +21,7 @@ namespace HaveYourSay.Service
 
         }
 
-        public async Task SaveEntryAsync(Entry item )
+        public async Task<string> SaveEntryAsync(Entry item )
         {
             var RestUrl = "https://hzsites.azurewebsites.net/api/hys";
             var uri = new Uri(RestUrl);
@@ -34,18 +34,22 @@ namespace HaveYourSay.Service
                 HttpResponseMessage response = null;
 
                 response = await client.PostAsync(uri, content);
-                
+
+                var itemId = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Debug.WriteLine(@"             Item successfully saved.");
+                    Debug.WriteLine(@":::::: Item successfully saved.");
                 }
 
+                return itemId;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(@"             ERROR {0}", ex.Message);
+                Debug.WriteLine(@":::::ERROR {0}", ex.Message);
             }
+
+            return null;
         }
     }
 }

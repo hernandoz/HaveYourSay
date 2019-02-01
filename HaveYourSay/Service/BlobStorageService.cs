@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 
-namespace HaveYourSay.Model
+namespace HaveYourSay.Service
 {
     public class BlobStorageService
     {
@@ -14,16 +14,19 @@ namespace HaveYourSay.Model
         readonly static CloudBlobClient _blobClient = _cloudStorageAccount.CreateCloudBlobClient();
 
 
-        public static async Task<CloudBlockBlob> SaveBlockBlob(string containerName, Byte[] blob, string blobTitle)
+        public static async Task<CloudBlockBlob> SaveBlockBlob(string containerName, Byte[] blob, string itemid)
         {
             var blobContainer = _blobClient.GetContainerReference(containerName);
 
             try
             {
-            
-            var blockBlob = blobContainer.GetBlockBlobReference(blobTitle);
 
-            blockBlob.Metadata.Add("Hello", "Moto");
+                Guid g;
+                g = Guid.NewGuid();
+
+                var blockBlob = blobContainer.GetBlockBlobReference(g.ToString());
+
+            blockBlob.Metadata.Add("entryid", itemid);
 
             await blockBlob.UploadFromByteArrayAsync(blob, 0, blob.Length);
             
@@ -38,15 +41,6 @@ namespace HaveYourSay.Model
                 return null;
             }
         }
-
-        //static void SetMetadata(CloudBlobContainer container)
-        //{
-        //    container.Metadata.Clear();
-        //    container.Metadata.Add("author", "Najuma M");
-        //    container.Metadata.Add("HEllo", "Test");
-        //    container.Metadata["LastUpdated"] = DateTime.Now.ToString();
-        //    container.SetMetadata();
-        //}
 
     }
 }
