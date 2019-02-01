@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage;
@@ -13,19 +14,23 @@ namespace HaveYourSay.Model
         readonly static CloudBlobClient _blobClient = _cloudStorageAccount.CreateCloudBlobClient();
 
 
-        public static async Task<CloudBlockBlob> SaveBlockBlob(string containerName, byte[] blob, string blobTitle)
+        public static async Task<CloudBlockBlob> SaveBlockBlob(string containerName, Byte[] blob, string blobTitle)
         {
             var blobContainer = _blobClient.GetContainerReference(containerName);
 
             try
             {
-                SetMetadata(blobContainer);
+            
+            var blockBlob = blobContainer.GetBlockBlobReference(blobTitle);
 
-                var blockBlob = blobContainer.GetBlockBlobReference(blobTitle);
+            blockBlob.Metadata.Add("Hello", "Moto");
 
-                await blockBlob.UploadFromByteArrayAsync(blob, 0, blob.Length);
+            await blockBlob.UploadFromByteArrayAsync(blob, 0, blob.Length);
+            
+            Console.WriteLine($":::::::" + blockBlob.Metadata.Count);
 
-                return blockBlob;
+            return blockBlob;
+
             }
             catch (Exception e)
             {
@@ -34,12 +39,14 @@ namespace HaveYourSay.Model
             }
         }
 
-        static void SetMetadata(CloudBlobContainer container)
-        {
-            container.Metadata.Clear();
-            container.Metadata.Add("author", "Najuma M");
-            container.SetMetadata();
-        }
+        //static void SetMetadata(CloudBlobContainer container)
+        //{
+        //    container.Metadata.Clear();
+        //    container.Metadata.Add("author", "Najuma M");
+        //    container.Metadata.Add("HEllo", "Test");
+        //    container.Metadata["LastUpdated"] = DateTime.Now.ToString();
+        //    container.SetMetadata();
+        //}
 
     }
 }

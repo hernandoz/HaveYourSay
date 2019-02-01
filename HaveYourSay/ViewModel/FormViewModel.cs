@@ -111,7 +111,7 @@ namespace HaveYourSay.ViewModel
 
                     item.ImageUrl = x.Uri.ToString();
 
-                    SaveEntryAsync();
+                    //SaveEntryAsync();
 
                 } 
                 catch (Exception e)
